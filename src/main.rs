@@ -11,6 +11,7 @@ async fn main() -> std::io::Result<()> {
          .service(find)
          .service(create)
          .service(update)
+         .service(delete)
     })
     // Binding socket address server will receive requests on
     .bind("127.0.0.1:5000")?
