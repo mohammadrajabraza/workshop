@@ -15,8 +15,13 @@ async fn main() -> std::io::Result<()> {
     .await
 }
 // ----------------------- Route ------------------------
-// The only route_handler for this example
+
 #[get("/students")]
 async fn find_all() -> HttpResponse {
     HttpResponse::Ok().body("List of students")
+}
+
+#[get("/students/{id}")]
+async fn find() -> HttpResponse {
+    HttpResponse::Ok().body("Listing student with specific id")
 }
