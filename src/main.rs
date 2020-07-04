@@ -16,7 +16,7 @@ async fn main() -> std::io::Result<()> {
 }
 // ----------------------- Route ------------------------
 // The only route_handler for this example
-#[get("/")]
-async fn index() -> HttpResponse {
-    HttpResponse::Ok().body("Hey! Welcome to the Actix REST API")
+#[get("/students")]
+async fn find_all() -> HttpResponse {
+    HttpResponse::Ok().body("List of students")
 }
