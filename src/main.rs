@@ -1,5 +1,5 @@
 // Necessary imports here 
-use actix_web::{App, get, post, HttpResponse, HttpServer};
+use actix_web::{App, get, post, put, HttpResponse, HttpServer};
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {    
@@ -16,7 +16,7 @@ async fn main() -> std::io::Result<()> {
     .run()
     .await
 }
-// ----------------------- Route ------------------------
+// ----------------------- Route Handlers ------------------------
 
 // This route handler will list all the data available
 #[get("/students")]
@@ -34,4 +34,10 @@ async fn find() -> HttpResponse {
 #[post("/students")]
 async fn create() -> HttpResponse {
     HttpResponse::Ok().body("Creating a new record......")
+}
+
+// This route handler will update an existing record
+#[put("/students/{id}")]
+async fn update() -> HttpResponse {
+    HttpResponse::Ok().body("Updating record......")
 }
