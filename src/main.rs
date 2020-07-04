@@ -8,6 +8,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
         // Associating service(s)/route_handler(s)
          .service(find_all)
+         .service(find)
     })
     // Binding socket address server will receive requests on
     .bind("127.0.0.1:5000")?
