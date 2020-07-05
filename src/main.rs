@@ -18,6 +18,21 @@ async fn main() -> std::io::Result<()> {
     .run()
     .await
 }
+
+// -------------------------- Models -----------------------------
+
+// This struct will be used for taking input from user's request
+struct Student {
+    first_name: String,
+    last_name: String,
+    department: String,
+    is_graduated: bool,
+    age: i32,
+}
+
+// ------------------------ End Models ---------------------------
+
+
 // ----------------------- Route Handlers ------------------------
 
 // This route handler will list all the data available
@@ -49,3 +64,5 @@ async fn update() -> HttpResponse {
 async fn delete() -> HttpResponse {
     HttpResponse::Ok().body("Deleting record......")
 }
+
+// ---------------------- End Route-Handlers ----------------------
