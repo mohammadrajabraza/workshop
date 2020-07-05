@@ -46,11 +46,22 @@ struct Students {
 // ------------------------ End Models ---------------------------
 
 // ---------------------- Helper Functions -----------------------
+
 // Function to increment id by 1 after each insertion 
 pub fn add_to_id() {
     unsafe {
         AUTO_INCR_ID += 1;
     }
+}
+
+// Getter function to get Global ID
+pub fn get_id() -> i32 {
+    let mut id :i32;
+    unsafe {
+        add_to_id();
+        id = AUTO_INCR_ID;
+    }
+    id
 }
 
 // -------------------- End Helper Functions ---------------------
