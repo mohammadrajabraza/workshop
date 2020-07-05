@@ -169,7 +169,8 @@ async fn find_all() -> HttpResponse {
 // This route handler will list data with specific id
 #[get("/students/{id}")]
 async fn find() -> HttpResponse {
-    HttpResponse::Ok().body("Listing student with specific id")
+    let student = Students::find(3);
+    HttpResponse::Ok().body(format!("Fetched Record : {:?}",student))
 }
 
 // This route handler will create a new record
