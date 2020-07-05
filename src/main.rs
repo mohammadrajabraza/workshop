@@ -85,6 +85,19 @@ impl Students {
         // returning the newly inserted object from the data store
         map.get(&new_student.id).unwrap().clone()
     }
+
+    // Function that will list all the data in the data store
+    fn find_all() -> Vec<Students>{
+        // getting data store in map
+        let map = GLOBAL_MAP.get().lock().unwrap();
+        // creating a list/Vec to return the list of objects in data store
+        let mut students = Vec::<Students>::new();
+        // getting values from the map and inserting into the list one-by-one
+        for val in map.values() {
+            students.push(val.clone());
+        }
+        students
+    }
 }
 // ------------------------ End Models ---------------------------
 
