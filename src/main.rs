@@ -30,6 +30,16 @@ struct Student {
     age: i32,
 }
 
+// This struct will be used for retrieval from data sources 
+struct Students {
+    id: i32,
+    first_name: String,
+    last_name: String,
+    department: String,
+    is_graduated: bool,
+    age: i32,
+}
+
 // ------------------------ End Models ---------------------------
 
 
