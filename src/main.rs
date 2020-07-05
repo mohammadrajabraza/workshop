@@ -162,7 +162,8 @@ pub fn get_id() -> i32 {
 // This route handler will list all the data available
 #[get("/students")]
 async fn find_all() -> HttpResponse {
-    HttpResponse::Ok().body("List of students")
+    let students = Students::find_all();
+    HttpResponse::Ok().body(format!("List of students : {:?}",students))
 }
 
 // This route handler will list data with specific id
