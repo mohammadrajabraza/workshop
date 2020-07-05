@@ -1,6 +1,9 @@
 // Necessary imports here 
 use actix_web::{App, get, post, put, delete, HttpResponse, HttpServer};
 
+// -------------------- Global Variables ----------------------
+static mut AUTO_INCR_ID: i32 = 0;
+
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {    
     // Initializing server
