@@ -45,6 +45,16 @@ struct Students {
 
 // ------------------------ End Models ---------------------------
 
+// ---------------------- Helper Functions -----------------------
+// Function to increment id by 1 after each insertion 
+pub fn add_to_id() {
+    unsafe {
+        AUTO_INCR_ID += 1;
+    }
+}
+
+// -------------------- End Helper Functions ---------------------
+
 
 // ----------------------- Route Handlers ------------------------
 
