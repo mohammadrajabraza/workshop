@@ -54,8 +54,14 @@ impl Students {
                 department,
                 is_graduated,
                 age 
-             }
-         }
+            }
+    }
+
+    // Function which transform Student object to Students object
+    fn from(student : Student) -> Students {
+        Students::new(get_id(), student.first_name, student.last_name, student.department,
+             student.is_graduated, student.age)
+    }
 }
 // ------------------------ End Models ---------------------------
 
