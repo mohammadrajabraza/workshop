@@ -98,6 +98,14 @@ impl Students {
         }
         students
     }
+
+    // Function that will show the record with specified id
+    fn find(id: i32) -> Students {
+        // getting data store in map
+        let map = GLOBAL_MAP.get().lock().unwrap();
+        // returning record of specified id
+        map.get(&id).unwrap().clone()
+    }
 }
 // ------------------------ End Models ---------------------------
 
