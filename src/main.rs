@@ -106,6 +106,22 @@ impl Students {
         // returning record of specified id
         map.get(&id).unwrap().clone()
     }
+
+    // Function that will update an existing record
+    fn update(id: i32, student: Student) -> Students {
+        // getting data store in map
+        let mut map = GLOBAL_MAP.get().lock().unwrap();
+        // getting the object from store to be updated
+        let mut updated_student = map.get_mut(&id).unwrap();
+        // updating values
+        updated_student.first_name = student.first_name;
+        updated_student.last_name = student.last_name;
+        updated_student.department = student.department;
+        updated_student.is_graduated = student.is_graduated;
+        updated_student.age = student.age;
+        // returning the updated value
+        updated_student.clone()
+    }
 }
 // ------------------------ End Models ---------------------------
 
