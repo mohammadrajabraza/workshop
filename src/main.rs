@@ -33,7 +33,7 @@ struct Student {
     age: i32,
 }
 
-// This struct will be used for retrieval from data sources 
+// This struct will be used for retrieval from data sources
 struct Students {
     id: i32,
     first_name: String,
@@ -43,6 +43,20 @@ struct Students {
     age: i32,
 }
 
+impl Students {
+    // Constructor function to get a new Student object
+    fn new(id : i32, first_name : String, last_name : String, department : String,
+         is_graduated : bool, age : i32) -> Students {
+             Students {
+                id,
+                first_name,
+                last_name,
+                department,
+                is_graduated,
+                age 
+             }
+         }
+}
 // ------------------------ End Models ---------------------------
 
 // ---------------------- Helper Functions -----------------------
