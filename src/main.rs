@@ -44,7 +44,7 @@ struct Student {
 }
 
 // This struct will be used for retrieval from data sources
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct Students {
     id: i32,
     first_name: String,
@@ -72,6 +72,18 @@ impl Students {
     fn from(student : Student) -> Students {
         Students::new(get_id(), student.first_name, student.last_name, student.department,
              student.is_graduated, student.age)
+    }
+
+    // Function that will create an Student object and insert it into data store
+    fn create(student: Student) -> Students{
+        // getting data store in map
+        let mut map = GLOBAL_MAP.get().lock().unwrap();
+        // creating a new object to be inserted
+        let new_student = Students::from(student);
+        // inserting new object in data store
+        map.insert(new_student.id, new_student.clone());
+        // returning the newly inserted object from the data store
+        map.get(&new_student.id).unwrap().clone()
     }
 }
 // ------------------------ End Models ---------------------------
