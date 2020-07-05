@@ -1,8 +1,14 @@
 // Necessary imports here 
 use actix_web::{App, get, post, put, delete, HttpResponse, HttpServer};
 
+// imports for data store
+use std::collections::HashMap;
+use std::sync::Mutex;
+use state::Storage;
+
 // -------------------- Global Variables ----------------------
 static mut AUTO_INCR_ID: i32 = 0;
+static GLOBAL_MAP: Storage<Mutex<HashMap<i32, Students>>> = Storage::new();
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {    
