@@ -174,7 +174,10 @@ async fn find() -> HttpResponse {
 // This route handler will create a new record
 #[post("/students")]
 async fn create() -> HttpResponse {
-    HttpResponse::Ok().body("Creating a new record......")
+    let student = Students::create(Student{first_name:"raza".to_string(), last_name:"raza".to_string(),
+            department :"Comp".to_string(), is_graduated : false, age : 26});
+    HttpResponse::Ok().body(format!("Creating a new record...... {:?}",student))
+
 }
 
 // This route handler will update an existing record
