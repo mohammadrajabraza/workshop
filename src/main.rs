@@ -11,7 +11,11 @@ static mut AUTO_INCR_ID: i32 = 0;
 static GLOBAL_MAP: Storage<Mutex<HashMap<i32, Students>>> = Storage::new();
 
 #[actix_rt::main]
-async fn main() -> std::io::Result<()> {    
+async fn main() -> std::io::Result<()> {
+    // Initializing hash-map based global storage
+    let initial_map = HashMap::new();
+    GLOBAL_MAP.set(Mutex::new(initial_map));
+
     // Initializing server
     HttpServer::new(|| {
         App::new()
@@ -40,6 +44,7 @@ struct Student {
 }
 
 // This struct will be used for retrieval from data sources
+#[derive(Debug)]
 struct Students {
     id: i32,
     first_name: String,
