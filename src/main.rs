@@ -122,6 +122,16 @@ impl Students {
         // returning the updated value
         updated_student.clone()
     }
+
+    // Function that will delete an specified object
+    fn delete(id: i32) -> Students {
+        // getting data store in map
+        let mut map = GLOBAL_MAP.get().lock().unwrap();
+        // removing the object from store
+        let deleted_student = map.remove(&id).unwrap();
+        // returning deleted object
+        deleted_student.clone()
+    }
 }
 // ------------------------ End Models ---------------------------
 
