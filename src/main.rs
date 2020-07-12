@@ -187,9 +187,8 @@ async fn create(student : web::Json<Student>) -> HttpResponse {
 
 // This route handler will update an existing record
 #[put("/students/{id}")]
-async fn update() -> HttpResponse {
-    let student = Students::update(2, Student{first_name:"Haris".to_string(), last_name:"raza".to_string(),
-        department :"BUSINESS".to_string(), is_graduated : false, age : 26});
+async fn update(id : web::Path<i32>, student : web::Json<Student>) -> HttpResponse {
+    let student = Students::update(id.into_inner(), student.into_inner());
     HttpResponse::Ok().body(format!("Updated record : {:?}",student))
 
 }
