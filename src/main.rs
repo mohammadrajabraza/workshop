@@ -185,7 +185,10 @@ async fn create() -> HttpResponse {
 // This route handler will update an existing record
 #[put("/students/{id}")]
 async fn update() -> HttpResponse {
-    HttpResponse::Ok().body("Updating record......")
+    let student = Students::update(2, Student{first_name:"Haris".to_string(), last_name:"raza".to_string(),
+        department :"BUSINESS".to_string(), is_graduated : false, age : 26});
+    HttpResponse::Ok().body(format!("Updated record : {:?}",student))
+
 }
 
 // This route handler will delete an specified record
