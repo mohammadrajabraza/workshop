@@ -195,8 +195,8 @@ async fn update(id : web::Path<i32>, student : web::Json<Student>) -> HttpRespon
 
 // This route handler will delete an specified record
 #[delete("/students/{id}")]
-async fn delete() -> HttpResponse {
-    let student = Students::delete(2);
+async fn delete(id: web::Path<i32>) -> HttpResponse {
+    let student = Students::delete(id.into_inner());
     HttpResponse::Ok().body(format!("Deleted record : {:?}",student))
 }
 
