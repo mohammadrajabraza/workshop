@@ -6,6 +6,9 @@ use std::collections::HashMap;
 use std::sync::Mutex;
 use state::Storage;
 
+// imports for de/serializing objects
+use serde::{Deserialize, Serialize};
+
 // -------------------- Global Variables ----------------------
 static mut AUTO_INCR_ID: i32 = 0;
 static GLOBAL_MAP: Storage<Mutex<HashMap<i32, Students>>> = Storage::new();
@@ -35,6 +38,7 @@ async fn main() -> std::io::Result<()> {
 // -------------------------- Models -----------------------------
 
 // This struct will be used for taking input from user's request
+#[derive(Serialize, Deserialize)]
 struct Student {
     first_name: String,
     last_name: String,
@@ -175,9 +179,8 @@ async fn find(id: web::Path<i32>) -> HttpResponse {
 
 // This route handler will create a new record
 #[post("/students")]
-async fn create() -> HttpResponse {
-    let student = Students::create(Student{first_name:"raza".to_string(), last_name:"raza".to_string(),
-            department :"Comp".to_string(), is_graduated : false, age : 26});
+async fn create(student : web::Json<Student>) -> HttpResponse {
+    let student = Students::create(student.into_inner());
     HttpResponse::Ok().body(format!("Created record : {:?}",student))
 
 }
