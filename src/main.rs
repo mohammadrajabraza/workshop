@@ -178,7 +178,7 @@ async fn find() -> HttpResponse {
 async fn create() -> HttpResponse {
     let student = Students::create(Student{first_name:"raza".to_string(), last_name:"raza".to_string(),
             department :"Comp".to_string(), is_graduated : false, age : 26});
-    HttpResponse::Ok().body(format!("Creating a new record...... {:?}",student))
+    HttpResponse::Ok().body(format!("Created record : {:?}",student))
 
 }
 
@@ -191,7 +191,8 @@ async fn update() -> HttpResponse {
 // This route handler will delete an specified record
 #[delete("/students/{id}")]
 async fn delete() -> HttpResponse {
-    HttpResponse::Ok().body("Deleting record......")
+    let student = Students::delete(2);
+    HttpResponse::Ok().body(format!("Deleted record : {:?}",student))
 }
 
 // ---------------------- End Route-Handlers ----------------------
