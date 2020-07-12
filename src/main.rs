@@ -1,5 +1,5 @@
 // Necessary imports here 
-use actix_web::{App, get, post, put, delete, HttpResponse, HttpServer};
+use actix_web::{App, get, post, put, delete, web, HttpResponse, HttpServer};
 
 // imports for data store
 use std::collections::HashMap;
@@ -168,8 +168,8 @@ async fn find_all() -> HttpResponse {
 
 // This route handler will list data with specific id
 #[get("/students/{id}")]
-async fn find() -> HttpResponse {
-    let student = Students::find(3);
+async fn find(id: web::Path<i32>) -> HttpResponse {
+    let student = Students::find(id.into_inner());
     HttpResponse::Ok().body(format!("Fetched Record : {:?}",student))
 }
 
