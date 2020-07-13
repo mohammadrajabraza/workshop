@@ -7,7 +7,7 @@ use std::sync::Mutex;
 use state::Storage;
 
 // imports for de/serializing objects
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize};
 
 // -------------------- Global Variables ----------------------
 static mut AUTO_INCR_ID: i32 = 0;
@@ -38,7 +38,7 @@ async fn main() -> std::io::Result<()> {
 // -------------------------- Models -----------------------------
 
 // This struct will be used for taking input from user's request
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 struct Student {
     first_name: String,
     last_name: String,
