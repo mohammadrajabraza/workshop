@@ -1,5 +1,5 @@
 // Necessary imports here 
-use actix_web::{App, get, post, put, delete, web, HttpResponse, HttpServer};
+use actix_web::{App, HttpServer};
 
 // imports for data store
 use std::collections::HashMap;
@@ -8,6 +8,9 @@ use state::Storage;
 
 // imports for de/serializing objects
 use serde::{Deserialize};
+
+// importing student module(s)
+mod students;
 
 // -------------------- Global Variables ----------------------
 static mut AUTO_INCR_ID: i32 = 0;
@@ -23,11 +26,11 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
         // Associating service(s)/route_handler(s)
-         .service(find_all)
-         .service(find)
-         .service(create)
-         .service(update)
-         .service(delete)
+         .service(students::routes::find_all)
+         .service(students::routes::find)
+         .service(students::routes::create)
+         .service(students::routes::update)
+         .service(students::routes::delete)
     })
     // Binding socket address server will receive requests on
     .bind("127.0.0.1:5000")?
@@ -159,45 +162,3 @@ pub fn get_id() -> i32 {
 }
 
 // -------------------- End Helper Functions ---------------------
-
-
-// ----------------------- Route Handlers ------------------------
-
-// This route handler will list all the data available
-#[get("/students")]
-async fn find_all() -> HttpResponse {
-    let students = Students::find_all();
-    HttpResponse::Ok().body(format!("List of students : {:?}",students))
-}
-
-// This route handler will list data with specific id
-#[get("/students/{id}")]
-async fn find(id: web::Path<i32>) -> HttpResponse {
-    let student = Students::find(id.into_inner());
-    HttpResponse::Ok().body(format!("Fetched Record : {:?}",student))
-}
-
-// This route handler will create a new record
-#[post("/students")]
-async fn create(student : web::Json<Student>) -> HttpResponse {
-    let student = Students::create(student.into_inner());
-    HttpResponse::Ok().body(format!("Created record : {:?}",student))
-
-}
-
-// This route handler will update an existing record
-#[put("/students/{id}")]
-async fn update(id : web::Path<i32>, student : web::Json<Student>) -> HttpResponse {
-    let student = Students::update(id.into_inner(), student.into_inner());
-    HttpResponse::Ok().body(format!("Updated record : {:?}",student))
-
-}
-
-// This route handler will delete an specified record
-#[delete("/students/{id}")]
-async fn delete(id: web::Path<i32>) -> HttpResponse {
-    let student = Students::delete(id.into_inner());
-    HttpResponse::Ok().body(format!("Deleted record : {:?}",student))
-}
-
-// ---------------------- End Route-Handlers ----------------------
