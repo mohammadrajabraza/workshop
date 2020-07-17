@@ -26,11 +26,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
         // Associating service(s)/route_handler(s)
-         .service(students::routes::find_all)
-         .service(students::routes::find)
-         .service(students::routes::create)
-         .service(students::routes::update)
-         .service(students::routes::delete)
+         .configure(students::routes::init_routes)
     })
     // Binding socket address server will receive requests on
     .bind("127.0.0.1:5000")?

@@ -37,3 +37,12 @@ async fn delete(id: web::Path<i32>) -> HttpResponse {
     let student = Students::delete(id.into_inner());
     HttpResponse::Ok().body(format!("Deleted record : {:?}",student))
 }
+
+// this function will initialize all the route handlers
+pub fn init_routes(comfig: &mut web::ServiceConfig) {
+    comfig.service(find_all);
+    comfig.service(find);
+    comfig.service(create);
+    comfig.service(update);
+    comfig.service(delete);
+}
