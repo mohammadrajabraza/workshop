@@ -82,7 +82,14 @@ impl Students {
     }
 
     // Function that will update an existing record
-    pub fn update(id: i32, student: Student) {
+    pub fn update(id: i32, student: Student) -> Students {
+        let conn = db::init();
+        let student = diesel::update(students::table)
+            .filter(students::id.eq(id))
+            .set(student)
+            .get_result(&conn)
+            .expect("Error updating record");
+        student
     }
 
     // Function that will delete an specified object

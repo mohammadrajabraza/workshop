@@ -27,7 +27,7 @@ async fn create(student : web::Json<Student>) -> HttpResponse {
 #[put("/students/{id}")]
 async fn update(id : web::Path<i32>, student : web::Json<Student>) -> HttpResponse {
     let student = Students::update(id.into_inner(), student.into_inner());
-    HttpResponse::Ok().body(format!("Updated record"))
+    HttpResponse::Ok().body(format!("Updated record : {:?}", student))
 
 }
 
