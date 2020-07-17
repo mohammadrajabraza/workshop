@@ -5,7 +5,7 @@ use actix_web::{delete, get, post, put, web, HttpResponse};
 #[get("/students")]
 async fn find_all() -> HttpResponse {
     let students = Students::find_all();
-    HttpResponse::Ok().body(format!("List of students"))
+    HttpResponse::Ok().body(format!("List of students : {:?}", students))
 }
 
 // This route handler will list data with specific id

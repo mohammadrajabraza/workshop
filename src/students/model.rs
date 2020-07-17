@@ -27,7 +27,7 @@ impl Student {
 }
 
 // This struct will be used for retrieval from data sources
-#[derive(Serialize, Deserialize, Queryable, Insertable)]
+#[derive(Serialize, Deserialize, Queryable, Insertable, Debug)]
 #[table_name = "students"]
 pub struct Students {
     id: i32,
@@ -64,7 +64,11 @@ impl Students {
     }
 
     // Function that will list all the data in the data store
-    pub fn find_all() {
+    pub fn find_all() -> Vec<Students> {
+        let conn = db::init();
+        let students = students::table.load::<Students>(&conn)
+            .expect("Error while fetching records");
+        students
     }
 
     // Function that will show the record with specified id
