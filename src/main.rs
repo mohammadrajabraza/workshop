@@ -8,9 +8,12 @@ use actix_web::{App, HttpServer};
 // importing student module(s)
 mod students;
 mod schema;
+mod db;
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
+    // initializing database
+    db::init();
     // Initializing server
     HttpServer::new(|| {
         App::new()

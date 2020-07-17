@@ -14,3 +14,4 @@ serde = "1.0"
 # For diesel
 diesel = { version = "1.4.4", features = ["postgres"] }
 diesel_migrations = "1.4"
+dotenv = "0.11"
