@@ -1,4 +1,4 @@
-use crate::{Student, Students};
+use crate::students::{Student, Students};
 use actix_web::{delete, get, post, put, web, HttpResponse};
 
 // This route handler will list all the data available
