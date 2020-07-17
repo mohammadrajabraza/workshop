@@ -93,6 +93,12 @@ impl Students {
     }
 
     // Function that will delete an specified object
-    pub fn delete(id: i32) {
+    pub fn delete(id: i32) -> usize {
+        let conn = db::init();
+        let res = diesel::delete(students::table
+            .filter(students::id.eq(id)))
+            .execute(&conn)
+            .expect("Error deleteing record");
+        res
     }
 }
