@@ -19,7 +19,7 @@ async fn find(id: web::Path<i32>) -> HttpResponse {
 #[post("/students")]
 async fn create(student : web::Json<Student>) -> HttpResponse {
     let student = Students::create(student.into_inner());
-    HttpResponse::Ok().body(format!("Created record"))
+    HttpResponse::Ok().body(format!("Created record : {:?}", student))
 
 }
 
