@@ -11,3 +11,5 @@ actix-web = "2.0"
 actix-rt = "1.0"
 
 serde = "1.0"
+# For diesel
+diesel = { version = "1.4.4", features = ["postgres"] }
