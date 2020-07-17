@@ -1192,7 +1192,6 @@ dependencies = [
  "actix-rt",
  "actix-web",
  "serde",
- "state",
 ]
 
 [[package]]
@@ -1325,12 +1324,6 @@ dependencies = [
  "redox_syscall",
  "winapi 0.3.9",
 ]
-
-[[package]]
-name = "state"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7345c971d1ef21ffdbd103a75990a15eb03604fc8b8852ca8cb418ee1a099028"
 
 [[package]]
 name = "syn"
