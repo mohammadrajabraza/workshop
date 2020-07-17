@@ -72,7 +72,13 @@ impl Students {
     }
 
     // Function that will show the record with specified id
-    pub fn find(id: i32) {
+    pub fn find(id: i32) -> Students {
+        let conn = db::init();
+        let student = students::table
+                .filter(students::id.eq(id))
+                .first(&conn)
+                .expect("Error fetching record");
+        student
     }
 
     // Function that will update an existing record

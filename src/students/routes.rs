@@ -12,7 +12,7 @@ async fn find_all() -> HttpResponse {
 #[get("/students/{id}")]
 async fn find(id: web::Path<i32>) -> HttpResponse {
     let student = Students::find(id.into_inner());
-    HttpResponse::Ok().body(format!("Fetched Record"))
+    HttpResponse::Ok().body(format!("Fetched Record : {:?}", student))
 }
 
 // This route handler will create a new record
